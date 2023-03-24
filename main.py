@@ -1,8 +1,6 @@
 import secrets
 import string
-import hashlib
 import tkinter as tk
-import tkinter.font as font
 
 def generate_password():
     alphabet = string.ascii_letters + string.digits + string.punctuation
