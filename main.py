@@ -1,20 +1,14 @@
-import random
+import secrets
+import string
 import hashlib
 import tkinter as tk
 import tkinter.font as font
 
 def generate_password():
-    lower = "abcdefghijklmnopqrstuvwxyz"
-    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    numbers = "0123456789"
-    symbols = "[]{}()*;/,._-"
-
-    all = lower + upper + numbers + symbols
-    length = 16
-    password = "".join(random.sample(all, length))
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    alphabet = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(secrets.choice(alphabet) for i in range(16))
     password_entry.delete(0, tk.END)
-    password_entry.insert(0, hashed_password)
+    password_entry.insert(0, password)
 
 def copy_password():
     password = password_entry.get()
