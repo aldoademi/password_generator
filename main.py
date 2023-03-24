@@ -1,4 +1,5 @@
 import random
+import hashlib
 import tkinter as tk
 import tkinter.font as font
 
@@ -11,8 +12,9 @@ def generate_password():
     all = lower + upper + numbers + symbols
     length = 16
     password = "".join(random.sample(all, length))
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
     password_entry.delete(0, tk.END)
-    password_entry.insert(0, password)
+    password_entry.insert(0, hashed_password)
 
 def copy_password():
     password = password_entry.get()
